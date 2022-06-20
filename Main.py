@@ -3,7 +3,8 @@ import random
 
 screen = Screen()
 screen.setup(500, 400)
-user_guess = screen.textinput("Make your bet", "Which turtle will win the race: Enter a color")
+user_guess = screen.textinput("Make your bet", "Which turtle will win the race: Enter a color \n "
+                                               "red, orange, yellow, green, blue, purple, violet")
 
 turtles = []
 colors = ["red", "orange", "yellow", "green", "blue", "purple", "violet"]
@@ -17,25 +18,23 @@ for color in colors:
     turtles.append(color)
 
 
-
-
-
-
 # send turtle to start position on left side of screen
 def start_positions():
     z = (screen.window_height() / len(colors))
     x = -240
-    y = 180
+    y = screen.window_height() / 2 - 20
     for _ in turtles:
         _.setpos(x, y)
         y -= z
+
 
 # random movements forward
 def race():
     for _ in turtles:
         _.fd(random.randint(0, 20))
 
-#check if anyone crossed the finish line and if user guess was correct
+
+# check if anyone crossed the finish line and if user guess was correct
 def check_postition():
     for _ in turtles:
         if _.xcor() >= 240:
@@ -54,3 +53,4 @@ while check_postition() < 240:
     race()
 
 screen.exitonclick()
+
